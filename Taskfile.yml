@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+
+version: '3'
+
+vars:
+  GREETING: Hello, world!
+
+tasks:
+  default:
+    desc: Print a greeting message
+    cmds:
+      - echo "{{.GREETING}}"
+    silent: true
+
+  format:
+    desc: Format the code with Ruff
+    cmds:
+      - ruff format .
+    silent: true
+
+  test_unit:
+    desc: Run unit tests
+    cmds:
+      - pytest tests/unit/
+    silent: true
+
+  test:
+    desc: Run all tests
+    deps: [test_unit]
