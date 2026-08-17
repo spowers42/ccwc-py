@@ -15,7 +15,7 @@ def main(
     count = 0
     count_method = get_count_method(count_bytes_flag=count_bytes)
 
-    with open(filename, "r") as file:
+    with open(filename, "r", newline="") as file:
         for line in file:
             count += count_method(line)
     print(f"{count} {filename}")
