@@ -1,2 +1,9 @@
-def main() -> None:
-    print("Hello from ccwc-py!")
+from .wc import app
+
+
+def main():
+    app()
+
+
+if __name__ == "__main__":
+    main()
