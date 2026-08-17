@@ -1,10 +1,10 @@
 import pytest
-from ccwc_py.count import count_bytes, get_count_method
+from ccwc_py.count import count_bytes, get_count_method, count_words
 
 
 def test_get_count_method_exception():
     with pytest.raises(NotImplementedError):
-        get_count_method(False)
+        get_count_method(False, False)
 
 
 @pytest.mark.parametrize(
@@ -16,4 +16,12 @@ def test_get_count_method_exception():
 )
 def test_count_bytes(text: str, expected: int):
     count = count_bytes(text)
+    assert count == expected
+
+
+@pytest.mark.parametrize(
+    "text,expected", [("a b c d e", 5), ("🦎 🦎 🦎 🦎 🦎", 5), ("🦎🦎🦎🦎🦎", 1)]
+)
+def test_count_words(text, expected):
+    count = count_words(text)
     assert count == expected
