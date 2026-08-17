@@ -4,7 +4,7 @@ from ccwc_py.count import count_bytes, get_count_method, count_words
 
 def test_get_count_method_exception():
     with pytest.raises(NotImplementedError):
-        get_count_method(False, False)
+        get_count_method(False, False, False)
 
 
 @pytest.mark.parametrize(
