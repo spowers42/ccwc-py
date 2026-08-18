@@ -1,10 +1,18 @@
 import pytest
-from ccwc_py.count import count_bytes, get_count_method, count_words, count_chars
+from ccwc_py.count import count_bytes, get_count_methods, count_words, count_chars
 
 
-def test_get_count_method_exception():
-    with pytest.raises(NotImplementedError):
-        get_count_method(False, False, False, False)
+@pytest.mark.parametrize(
+    "flags,num_methods",
+    [
+        ((False, False, False, False), 3),
+        ((True, True, True, False), 3),
+        ((False, True, True, False), 2),
+        ((False, False, False, True), 1),
+    ],
+)
+def test_get_count_method_exception(flags, num_methods):
+    assert num_methods == len(set(get_count_methods(*flags)))
 
 
 @pytest.mark.parametrize(
