@@ -1,21 +1,22 @@
 from collections.abc import Callable
 
 
-def get_count_method(
+def get_count_methods(
     count_bytes_flag: bool,
     count_lines_flag: bool,
     count_words_flag: bool,
     count_chars_flag: bool,
-) -> Callable[[str], int]:
-    if count_bytes_flag:
-        return count_bytes
+) -> list[Callable[[str], int]]:
+    count_methods = []
     if count_lines_flag:
-        return count_lines
+        count_methods.append(count_lines)
     if count_words_flag:
-        return count_words
+        count_methods.append(count_words)
+    if count_bytes_flag:
+        count_methods.append(count_bytes)
     if count_chars_flag:
-        return count_chars
-    raise NotImplementedError("no available count method")
+        count_methods.append(count_chars)
+    return count_methods if count_methods else [count_lines, count_words, count_bytes]
 
 
 def count_bytes(text: str) -> int:
