@@ -1,6 +1,3 @@
-from collections.abc import Callable
-
-
 def get_count_methods(
     count_bytes_flag: bool,
     count_lines_flag: bool,
