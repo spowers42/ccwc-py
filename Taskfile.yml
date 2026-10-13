@@ -2,14 +2,11 @@
 
 version: '3'
 
-vars:
-  GREETING: Hello, world!
-
 tasks:
-  default:
-    desc: Print a greeting message
+  source:
+    desc: Source the uv environment for the project.
     cmds:
-      - echo "{{.GREETING}}"
+      - source .venv/bin/activate
     silent: true
 
   format:
